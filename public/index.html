@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valorant Stats</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <h1>Valorant <span>Stats</span></h1>
+    <form id="search" autocomplete="off">
+      <label class="field grow">
+        <span>Riot ID</span>
+        <input id="riot-id" placeholder="Name#Tag" required maxlength="42">
+      </label>
+      <label class="field">
+        <span>Region</span>
+        <select id="region">
+          <option value="auto">Auto</option>
+          <option value="eu">EU</option>
+          <option value="na">NA</option>
+          <option value="latam">LATAM</option>
+          <option value="br">BR</option>
+          <option value="ap">AP</option>
+          <option value="kr">KR</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Mode</span>
+        <select id="mode">
+          <option value="">All modes</option>
+          <option value="competitive">Competitive</option>
+          <option value="unrated">Unrated</option>
+          <option value="swiftplay">Swiftplay</option>
+          <option value="premier">Premier</option>
+          <option value="spikerush">Spike Rush</option>
+          <option value="deathmatch">Deathmatch</option>
+          <option value="teamdeathmatch">Team Deathmatch</option>
+        </select>
+      </label>
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <main>
+    <p id="banner" class="banner" hidden></p>
+    <p id="status" class="status" hidden></p>
+
+    <section id="results" hidden>
+      <div class="profile panel">
+        <div>
+          <h2 id="profile-name"></h2>
+          <p id="profile-meta" class="muted"></p>
+        </div>
+        <div class="rank">
+          <img id="rank-icon" alt="" hidden>
+          <div>
+            <p id="rank-name" class="rank-name"></p>
+            <p id="rank-meta" class="muted"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="stats">
+        <div class="tiles">
+          <div class="tile panel"><span class="label">Win rate</span><span id="tile-winrate" class="value"></span><span id="tile-record" class="muted"></span></div>
+          <div class="tile panel"><span class="label">K/D</span><span id="tile-kd" class="value"></span><span id="tile-kda" class="muted"></span></div>
+          <div class="tile panel"><span class="label">Avg ACS</span><span id="tile-acs" class="value"></span><span class="muted">combat score per round</span></div>
+          <div class="tile panel"><span class="label">Headshot %</span><span id="tile-hs" class="value"></span><span class="muted">of shots that hit</span></div>
+        </div>
+
+        <div id="charts" class="charts">
+          <div class="panel chart-card"><h3>Results <span class="muted">round difference, oldest to newest</span></h3><div class="chart-box"><canvas id="chart-results"></canvas></div></div>
+          <div class="panel chart-card"><h3>ACS trend</h3><div class="chart-box"><canvas id="chart-acs"></canvas></div></div>
+          <div class="panel chart-card"><h3>Win rate by agent</h3><div class="chart-box"><canvas id="chart-agents"></canvas></div></div>
+          <div class="panel chart-card"><h3>Win rate by map</h3><div class="chart-box"><canvas id="chart-maps"></canvas></div></div>
+        </div>
+
+        <div class="panel table-card">
+          <h3>Match history</h3>
+          <div class="table-scroll">
+            <table id="matches">
+              <thead>
+                <tr>
+                  <th>Date</th><th>Map</th><th>Agent</th><th>Mode</th><th>Result</th>
+                  <th class="num">K / D / A</th><th class="num">K/D</th><th class="num">ACS</th><th class="num">HS%</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="muted">Data from the unofficial HenrikDev Valorant API. Not affiliated with Riot Games.</footer>
+</body>
+</html>

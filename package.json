@@ -1,0 +1,14 @@
+{
+  "name": "valorant-stats-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Valorant match history and win rate dashboard using the HenrikDev API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node server.js --demo"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}
